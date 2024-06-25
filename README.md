@@ -1,5 +1,7 @@
 ![Screenshot (498)](https://github.com/sanjana1010/cookbook.sanjana/assets/84500506/c2496328-5c20-421e-9116-b000fe0037c7)
+
 ffuf - Fuzz Faster U Fool
+
 INSTALLATION
 
 If you have recent go compiler installed: go install github.com/ffuf/ffuf/v2@latest (the same command works for updating)
@@ -11,36 +13,55 @@ git clone https://github.com/ffuf/ffuf ; cd ffuf ; go get ; go build
 EXAMPLE USAGE
 
 Suppose you want to fuzz a web application's URL for potential directories or files:
+
 --> ffuf -u http://example.com/FUZZ -w wordlist.txt
+
 -u: Specifies the target URL with FUZZ as a placeholder for the payloads.
+
 -w: Specifies the wordlist file (wordlist.txt) containing the list of payloads to try
 
 You can specify custom headers and HTTP methods:
+
 --> ffuf -u http://example.com/FUZZ -w wordlist.txt -H "Authorization: Bearer token" -X POST
+
 -H: Adds a custom header (Authorization: Bearer token in this case).
+
 -X: Specifies the HTTP method (POST in this case).
 
 You can filter responses based on status codes or response size:
+
 --> ffuf -u http://example.com/FUZZ -w wordlist.txt -fc 404,403 -fs 128
+
 -fc: Filters out specified HTTP status codes (404 and 403 in this example).
+
 -fs: Filters out responses smaller than 128 bytes.
 
 To save results to a file:
+
 --> ffuf -u http://example.com/FUZZ -w wordlist.txt -o output.txt
+
 -o: Specifies the output file (output.txt).
 
 Adjusting concurrency and timeout:
+
 --> ffuf -u http://example.com/FUZZ -w wordlist.txt -t 50 -timeout 10s
+
 -t: Number of concurrent threads (50 threads in this example).
+
 -timeout: Timeout for each request (10 seconds in this example).
 
+
 Using regular expressions for filtering:
+
 --> ffuf -u http://example.com/FUZZ -w wordlist.txt -fr "Invalid username"
+
 -fr: Filters responses based on a regular expression ("Invalid username" in this example).
+
 
 USAGE
 
 Fuzz Faster U Fool - v2.1.0
+
 
 HTTP OPTIONS:
   -H                  Header `"Name: Value"`, separated by colon. Multiple -H flags are accepted.
